@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul,li{
+			list-style: none;
+		}
+		.clearfix:after { content: ""; display: block; clear: both; }
+		.clearfix { zoom: 1; }
+		.fl { float: left; }
+		.fr { float: right; }
+		#ul li{
+			position: relative;
+		}
+		.son{
+			position: absolute;
+			left: 0;
+			top: 40px;
+			display: none;
+		}
+		.grason{
+			position: absolute;
+			left: 100px;
+			top: 0;
+			display: none;
+		}
+		li{
+			width: 80px;
+			padding: 10px;
+			border: 1px solid #ccc;
+			cursor: pointer;
+		}
+		ul li:hover{
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<ul class="clearfix " id="ul">
+		<li class="fl">首页</li>
+		<li class="fl">
+			<span>公司简介</span>
+			<ul class="son">
+				<li>大事记</li>
+				<li>
+					<span>领导致辞</span>
+					<ul class="grason">
+						<li>
+							<span>2013年</span>
+							<ul class="grason">
+								<li>10月份</li>
+								<li>8月份</li>
+								<li>8月份</li>
+							</ul>
+						</li>
+						<li>2012年</li>
+					</ul>
+				</li>
+				<li>企业文化</li>
+			</ul>
+		</li>
+		<li class="fl">联系我们</li>
+		<li class="fl " >
+			<span>产品展示</span>
+			<ul class="son">
+				<li>线上</li>
+				<li>线下</li>
+				
+			</ul>
+		</li>
+	</ul>
+	<script type="text/javascript">
+		window.onload = function(){
+			var oUl = document.getElementById('ul');
+			var aLi = oUl.getElementsByTagName('li');
+			var timer = null;
+			for (var i = 0; i <aLi.length; i++) {
+				aLi[i].onmouseover = function(){
+					clearTimeout(this.timer);
+					var _this = this;
+					this.timer = setTimeout(function(){
+						var oUl1 = _this.getElementsByTagName('ul')[0];
+						if(oUl1){
+							oUl1.style.display = 'block';
+						}
+					},300);
+				}
+				aLi[i].onmouseout = function(){
+					clearTimeout(this.timer);
+					var _this = this;
+					this.timer = setTimeout(function(){
+						var oUl1 = _this.getElementsByTagName('ul')[0];
+						if(oUl1){
+							oUl1.style.display = 'none';
+						}
+					},300);
+				}
+			}
+		}
+	</script>
+</body>
+</html>
